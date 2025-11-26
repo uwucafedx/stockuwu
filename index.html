@@ -2,110 +2,173 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Calculadora de Producción UwU Café</title>
+    <title>UwU Café – Calculadora de Insumos</title>
+
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background: #f7f7f7;
+            font-family: "Nunito", Arial, sans-serif;
+            background: linear-gradient(135deg, #ff72e1, #a084ff);
+            color: white;
+            margin: 0;
             padding: 20px;
+            text-shadow: 0 0 3px rgba(0,0,0,0.3);
         }
-        h1 { text-align: center; }
+
+        h1 {
+            text-align: center;
+            margin-top: 10px;
+            margin-bottom: 25px;
+            font-size: 32px;
+            letter-spacing: 1px;
+        }
+
+        /* Logo */
+        .logo {
+            display: block;
+            margin: 0 auto 15px auto;
+            width: 180px;
+            filter: drop-shadow(0 0 10px rgba(255,255,255,0.8));
+        }
+
+        /* Tabla */
         table {
             width: 100%;
             border-collapse: collapse;
-            background: white;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(4px);
+            border-radius: 12px;
+            overflow: hidden;
         }
-        th, td {
+
+        th {
+            background: rgba(255, 255, 255, 0.25);
+            padding: 12px;
+            font-size: 18px;
+        }
+
+        td {
             padding: 10px;
-            border: 1px solid #ccc;
             text-align: center;
+            font-size: 16px;
         }
-        th { background: #ffe6a7; }
+
+        tr:nth-child(even) {
+            background: rgba(255, 255, 255, 0.10);
+        }
+
         .input {
-            width: 60px;
-            padding: 5px;
+            width: 70px;
+            padding: 6px;
+            border-radius: 6px;
+            border: none;
+            text-align: center;
+            background: rgba(255,255,255,0.8);
+            color: #333;
+            font-weight: bold;
+        }
+
+        button {
+            display: block;
+            margin: 25px auto;
+            background: #ffb7ff;
+            color: #000;
+            padding: 12px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(255,255,255,0.5);
+            transition: 0.2s;
+        }
+
+        button:hover {
+            background: #ffe0ff;
+            transform: scale(1.05);
         }
     </style>
 </head>
+
 <body>
 
-<h1>📦 Calculadora de Insumos – UwU Café</h1>
+    <!-- LOGO -->
+    <img src="logo.png" class="logo" alt="UwU Café">
 
-<table>
-    <tr>
-        <th>Producto</th>
-        <th>Stock actual</th>
-        <th>Meta</th>
-        <th>Faltante</th>
-        <th>Insumos necesarios</th>
-    </tr>
+    <h1>📦 Calculadora de Insumos – UwU Café</h1>
 
-    <tr>
-        <td>Solomillo de res</td>
-        <td><input class="input" id="solomilloStock" value="0"></td>
-        <td><input class="input" id="solomilloMeta" value="500"></td>
-        <td id="solomilloFaltante">0</td>
-        <td id="solomilloInsumo">0</td>
-    </tr>
+    <table>
+        <tr>
+            <th>Producto</th>
+            <th>Stock actual</th>
+            <th>Meta</th>
+            <th>Faltante</th>
+            <th>Insumos necesarios</th>
+        </tr>
 
-    <tr>
-        <td>Jamón en cubos</td>
-        <td><input class="input" id="jamonStock" value="0"></td>
-        <td><input class="input" id="jamonMeta" value="500"></td>
-        <td id="jamonFaltante">0</td>
-        <td id="jamonInsumo">0</td>
-    </tr>
+        <tr>
+            <td>Solomillo de res</td>
+            <td><input class="input" id="solomilloStock" value="0"></td>
+            <td><input class="input" id="solomilloMeta" value="500"></td>
+            <td id="solomilloFaltante">0</td>
+            <td id="solomilloInsumo">0</td>
+        </tr>
 
-    <tr>
-        <td>Bolonia en rodajas</td>
-        <td><input class="input" id="boloniaStock" value="0"></td>
-        <td><input class="input" id="boloniaMeta" value="500"></td>
-        <td id="boloniaFaltante">0</td>
-        <td id="boloniaInsumo">0</td>
-    </tr>
+        <tr>
+            <td>Jamón en cubos</td>
+            <td><input class="input" id="jamonStock" value="0"></td>
+            <td><input class="input" id="jamonMeta" value="500"></td>
+            <td id="jamonFaltante">0</td>
+            <td id="jamonInsumo">0</td>
+        </tr>
 
-    <tr>
-        <td>Medallones de carne</td>
-        <td><input class="input" id="medallonStock" value="0"></td>
-        <td><input class="input" id="medallonMeta" value="500"></td>
-        <td id="medallonFaltante">0</td>
-        <td id="medallonInsumo">0</td>
-    </tr>
+        <tr>
+            <td>Bolonia en rodajas</td>
+            <td><input class="input" id="boloniaStock" value="0"></td>
+            <td><input class="input" id="boloniaMeta" value="500"></td>
+            <td id="boloniaFaltante">0</td>
+            <td id="boloniaInsumo">0</td>
+        </tr>
 
-    <tr>
-        <td>Jugo</td>
-        <td><input class="input" id="jugoStock" value="0"></td>
-        <td><input class="input" id="jugoMeta" value="500"></td>
-        <td id="jugoFaltante">0</td>
-        <td id="jugoInsumo">0</td>
-    </tr>
-</table>
+        <tr>
+            <td>Medallones de carne</td>
+            <td><input class="input" id="medallonStock" value="0"></td>
+            <td><input class="input" id="medallonMeta" value="500"></td>
+            <td id="medallonFaltante">0</td>
+            <td id="medallonInsumo">0</td>
+        </tr>
 
-<br>
-<button onclick="calcularTodo()" style="padding:10px 20px; font-size:16px;">Calcular</button>
+        <tr>
+            <td>Jugo</td>
+            <td><input class="input" id="jugoStock" value="0"></td>
+            <td><input class="input" id="jugoMeta" value="500"></td>
+            <td id="jugoFaltante">0</td>
+            <td id="jugoInsumo">0</td>
+        </tr>
+    </table>
 
-<script>
-function calcularTodo() {
-    calcular("solomillo", 50/100);  // 50 lomos = 10 losas → 1 losa = 5 lomos
-    calcular("jamon", 2/100);       // 2 jamones por 100 unidades
-    calcular("bolonia", 10/100);
-    calcular("medallon", 17/100);
-    calcular("jugo", 50/100);       // 1 fruta = 2 jugos → 50 frutas → 100 jugos
-}
+    <button onclick="calcularTodo()">Calcular</button>
 
-function calcular(nombre, factor) {
-    let stock = parseInt(document.getElementById(nombre+"Stock").value);
-    let meta = parseInt(document.getElementById(nombre+"Meta").value);
-    let faltante = meta - stock;
+    <script>
+        function calcularTodo() {
+            calcular("solomillo", 50/100);
+            calcular("jamon", 2/100);
+            calcular("bolonia", 10/100);
+            calcular("medallon", 17/100);
+            calcular("jugo", 50/100);
+        }
 
-    if (faltante < 0) faltante = 0;
+        function calcular(nombre, factor) {
+            let stock = parseInt(document.getElementById(nombre + "Stock").value);
+            let meta = parseInt(document.getElementById(nombre + "Meta").value);
 
-    let insumo = faltante * factor;
+            let faltante = meta - stock;
+            if (faltante < 0) faltante = 0;
 
-    document.getElementById(nombre+"Faltante").innerText = faltante;
-    document.getElementById(nombre+"Insumo").innerText = insumo.toFixed(2);
-}
-</script>
+            let insumo = faltante * factor;
+
+            document.getElementById(nombre + "Faltante").innerText = faltante;
+            document.getElementById(nombre + "Insumo").innerText = insumo.toFixed(2);
+        }
+    </script>
 
 </body>
 </html>
