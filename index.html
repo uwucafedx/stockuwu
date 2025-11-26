@@ -2,173 +2,83 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>UwU Café – Calculadora de Insumos</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock UwU Café</title>
 
     <style>
         body {
-            font-family: "Nunito", Arial, sans-serif;
-            background: linear-gradient(135deg, #ff72e1, #a084ff);
-            color: black;
+            background-color: #000; /* Fondo negro */
+            color: #ffb6c1; /* Rosa pastel */
+            font-family: Arial, sans-serif;
             margin: 0;
-            padding: 20px;
-            text-shadow: 0 0 3px rgba(0,0,0,0.3);
+            padding: 0;
+            text-align: center;
         }
 
         h1 {
-            text-align: center;
-            margin-top: 10px;
-            margin-bottom: 25px;
-            font-size: 32px;
-            letter-spacing: 1px;
+            margin-top: 20px;
+            color: #ffc1d9;
+            text-shadow: 0px 0px 10px #ff8abd;
         }
 
-        /* Logo */
-        .logo {
-            display: block;
-            margin: 0 auto 15px auto;
+        img {
+            margin-top: 20px;
             width: 180px;
-            filter: drop-shadow(0 0 10px rgba(255,255,255,0.8));
+            filter: drop-shadow(0 0 10px #ff8abd);
         }
 
-        /* Tabla */
         table {
-            width: 100%;
+            width: 90%;
+            margin: 30px auto;
             border-collapse: collapse;
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(4px);
-            border-radius: 12px;
-            overflow: hidden;
+            background-color: #1a1a1a;
+            border: 2px solid #ffb6c1;
+            box-shadow: 0 0 10px #ff7fa8;
+        }
+
+        th, td {
+            border: 1px solid #ffb6c1;
+            padding: 10px;
         }
 
         th {
-            background: rgba(255, 255, 255, 0.25);
-            padding: 12px;
-            font-size: 18px;
-        }
-
-        td {
-            padding: 10px;
-            text-align: center;
-            font-size: 16px;
-        }
-
-        tr:nth-child(even) {
-            background: rgba(255, 255, 255, 0.10);
-        }
-
-        .input {
-            width: 70px;
-            padding: 6px;
-            border-radius: 6px;
-            border: none;
-            text-align: center;
-            background: rgba(255,255,255,0.8);
-            color: #333;
+            background-color: #ffb6c1;
+            color: #000;
             font-weight: bold;
         }
 
-        button {
-            display: block;
-            margin: 25px auto;
-            background: #ffb7ff;
-            color: #000;
-            padding: 12px 30px;
-            font-size: 18px;
-            border: none;
-            border-radius: 12px;
-            cursor: pointer;
-            box-shadow: 0 0 10px rgba(255,255,255,0.5);
-            transition: 0.2s;
-        }
-
-        button:hover {
-            background: #ffe0ff;
-            transform: scale(1.05);
+        tr:hover {
+            background-color: #331a2d;
         }
     </style>
 </head>
-
 <body>
 
     <!-- LOGO -->
-    <img src="logo.png" class="logo" alt="UwU Café">
+    <img src="logo.png" alt="Logo UwU Café">
 
-    <h1>📦 Calculadora de Insumos – UwU Café</h1>
+    <!-- TÍTULO -->
+    <h1>Stock UwU Café</h1>
 
+    <!-- EJEMPLO DE TABLA (podés editar como quieras) -->
     <table>
         <tr>
             <th>Producto</th>
-            <th>Stock actual</th>
-            <th>Meta</th>
-            <th>Faltante</th>
-            <th>Insumos necesarios</th>
+            <th>Cantidad</th>
         </tr>
-
         <tr>
-            <td>Solomillo de res</td>
-            <td><input class="input" id="solomilloStock" value="0"></td>
-            <td><input class="input" id="solomilloMeta" value="500"></td>
-            <td id="solomilloFaltante">0</td>
-            <td id="solomilloInsumo">0</td>
+            <td>Leche</td>
+            <td>10</td>
         </tr>
-
         <tr>
-            <td>Jamón en cubos</td>
-            <td><input class="input" id="jamonStock" value="0"></td>
-            <td><input class="input" id="jamonMeta" value="500"></td>
-            <td id="jamonFaltante">0</td>
-            <td id="jamonInsumo">0</td>
+            <td>Chocolate</td>
+            <td>5</td>
         </tr>
-
         <tr>
-            <td>Bolonia en rodajas</td>
-            <td><input class="input" id="boloniaStock" value="0"></td>
-            <td><input class="input" id="boloniaMeta" value="500"></td>
-            <td id="boloniaFaltante">0</td>
-            <td id="boloniaInsumo">0</td>
-        </tr>
-
-        <tr>
-            <td>Medallones de carne</td>
-            <td><input class="input" id="medallonStock" value="0"></td>
-            <td><input class="input" id="medallonMeta" value="500"></td>
-            <td id="medallonFaltante">0</td>
-            <td id="medallonInsumo">0</td>
-        </tr>
-
-        <tr>
-            <td>Jugo</td>
-            <td><input class="input" id="jugoStock" value="0"></td>
-            <td><input class="input" id="jugoMeta" value="500"></td>
-            <td id="jugoFaltante">0</td>
-            <td id="jugoInsumo">0</td>
+            <td>Harina</td>
+            <td>8</td>
         </tr>
     </table>
-
-    <button onclick="calcularTodo()">Calcular</button>
-
-    <script>
-        function calcularTodo() {
-            calcular("solomillo", 50/100);
-            calcular("jamon", 2/100);
-            calcular("bolonia", 10/100);
-            calcular("medallon", 17/100);
-            calcular("jugo", 50/100);
-        }
-
-        function calcular(nombre, factor) {
-            let stock = parseInt(document.getElementById(nombre + "Stock").value);
-            let meta = parseInt(document.getElementById(nombre + "Meta").value);
-
-            let faltante = meta - stock;
-            if (faltante < 0) faltante = 0;
-
-            let insumo = faltante * factor;
-
-            document.getElementById(nombre + "Faltante").innerText = faltante;
-            document.getElementById(nombre + "Insumo").innerText = insumo.toFixed(2);
-        }
-    </script>
 
 </body>
 </html>
