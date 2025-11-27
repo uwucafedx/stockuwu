@@ -115,7 +115,7 @@
             <td><input class="input" id="jamonStock" placeholder="Stock de heladera"></td>
             <td><input class="input" id="jamonMeta" value="500"></td>
             <td id="jamonFaltante">0</td>
-            <td id="jamonInsumo">0</td><td>Jamón entero</td>
+            <td id="jamonInsumo">0</td><td>Jamón rebanado</td>
         </tr>
 
         <tr>
@@ -148,7 +148,7 @@
     <script>
         function calcularTodo() {
             calcular("solomillo", 0.5);
-            calcular("jamon", 2/100);
+            calcular("jamon", 1/10); // 10 cubos = 1 jamón rebanado
             calcular("bolonia", 10/100);
             calcular("medallon", 17/100);
             calcular("jugo", 50/100);
