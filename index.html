@@ -160,7 +160,7 @@
             calcular("bolonia", 10/100);
             calcular("medallon", 17/100);
             calcular("jugo", 50/100);
-            calcular("fideo", 1/10); // 10 fettuccine = 1 masa
+            calcular("fideo", 1/5); // 10 fettuccine = 2 masas -> 1 masa cada 5 fettuccine
         }
 
         function calcular(nombre, factor) {
@@ -172,8 +172,11 @@
 
             let insumo = faltante * factor;
 
+            // mostrar con un decimal cuando corresponde (p. ej. 17.2)
+            let insumoText = (insumo % 1 === 0) ? insumo.toString() : insumo.toFixed(1);
+
             document.getElementById(nombre + "Faltante").innerText = faltante;
-            document.getElementById(nombre + "Insumo").innerText = parseInt(insumo);
+            document.getElementById(nombre + "Insumo").innerText = insumoText;
         }
     </script>
 
