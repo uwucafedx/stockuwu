@@ -141,6 +141,14 @@
             <td id="jugoFaltante">0</td>
             <td id="jugoInsumo">0</td><td>Frutas</td>
         </tr>
+
+        <tr>
+            <td>Fideos Fettuccine</td>
+            <td><input class="input" id="fideoStock" placeholder="Stock de heladera"></td>
+            <td><input class="input" id="fideoMeta" value="500"></td>
+            <td id="fideoFaltante">0</td>
+            <td id="fideoInsumo">0</td><td>Masa</td>
+        </tr>
     </table>
 
     <button onclick="calcularTodo()">Calcular</button>
@@ -148,10 +156,11 @@
     <script>
         function calcularTodo() {
             calcular("solomillo", 0.5);
-            calcular("jamon", 1/10); // 10 cubos = 1 jamón rebanado
+            calcular("jamon", 1/10);
             calcular("bolonia", 10/100);
             calcular("medallon", 17/100);
             calcular("jugo", 50/100);
+            calcular("fideo", 1/10); // 10 fettuccine = 1 masa
         }
 
         function calcular(nombre, factor) {
