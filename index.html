@@ -12,8 +12,11 @@
         td { padding: 10px; text-align: center; font-size: 16px; color: #ffb6e6; }
         tr:nth-child(even) { background: rgba(255, 182, 230, 0.08); }
         .input { width: 130px; padding: 6px; border-radius: 6px; border: none; text-align: center; background: rgba(255,182,230,0.8); color: #000; font-weight: bold; }
-        button { display: block; margin: 25px auto; background: #ffb6e6; color: #000; padding: 12px 30px; font-size: 18px; border: none; border-radius: 12px; cursor: pointer; box-shadow: 0 0 10px rgba(255,182,230,0.5); transition: 0.2s; }
+        
+        .container-buttons { text-align: center; margin-top: 25px; }
+        button { background: #ffb6e6; color: #000; padding: 12px 30px; font-size: 18px; border: none; border-radius: 12px; cursor: pointer; box-shadow: 0 0 10px rgba(255,182,230,0.5); transition: 0.2s; margin: 0 10px; }
         button:hover { background: #ffd3f2; transform: scale(1.05); }
+        .btn-limpiar { background: #ff85d1; } /* Un tono un poco más oscuro para diferenciar */
     </style>
 </head>
 <body>
@@ -30,100 +33,106 @@
         </tr>
         <tr>
             <td>Solomillo de res</td>
-            <td><input class="input" id="solomilloStock" placeholder="Stock de heladera"></td>
+            <td><input class="input" id="solomilloStock" placeholder="0"></td>
             <td><input class="input" id="solomilloMeta" value="600"></td>
             <td id="solomilloFaltante">0</td>
             <td id="solomilloInsumo">0</td><td>Lomo de ternera</td>
         </tr>
         <tr>
             <td>Jamón en cubos</td>
-            <td><input class="input" id="jamonStock" placeholder="Stock de heladera"></td>
+            <td><input class="input" id="jamonStock" placeholder="0"></td>
             <td><input class="input" id="jamonMeta" value="600"></td>
             <td id="jamonFaltante">0</td>
             <td id="jamonInsumo">0</td><td>Jamón rebanado</td>
         </tr>
         <tr>
             <td>Bolonia en rodajas</td>
-            <td><input class="input" id="boloniaStock" placeholder="Stock de heladera"></td>
+            <td><input class="input" id="boloniaStock" placeholder="0"></td>
             <td><input class="input" id="boloniaMeta" value="600"></td>
             <td id="boloniaFaltante">0</td>
             <td id="boloniaInsumo">0</td><td>Bolonia</td>
         </tr>
         <tr>
             <td>Medallones de carne</td>
-            <td><input class="input" id="medallonStock" placeholder="Stock de heladera"></td>
+            <td><input class="input" id="medallonStock" placeholder="0"></td>
             <td><input class="input" id="medallonMeta" value="600"></td>
             <td id="medallonFaltante">0</td>
             <td id="medallonInsumo">0</td><td>Carne de venado</td>
         </tr>
         <tr>
+            <td>Fideos Fettuccine</td>
+            <td><input class="input" id="fideoStock" placeholder="0"></td>
+            <td><input class="input" id="fideoMeta" value="600"></td>
+            <td id="fideoFaltante">0</td>
+            <td id="fideoInsumo">0</td><td>Masa</td>
+        </tr>
+        <tr>
             <td>Jugo1</td>
-            <td><input class="input" id="jugoStock" placeholder="Stock de heladera"></td>
+            <td><input class="input" id="jugoStock" placeholder="0"></td>
             <td><input class="input" id="jugoMeta" value="600"></td>
             <td id="jugoFaltante">0</td>
             <td id="jugoInsumo">0</td><td>Frutas</td>
         </tr>
         <tr>
             <td>Jugo2</td>
-            <td><input class="input" id="jugo2Stock" placeholder="Stock de heladera"></td>
+            <td><input class="input" id="jugo2Stock" placeholder="0"></td>
             <td><input class="input" id="jugo2Meta" value="600"></td>
             <td id="jugo2Faltante">0</td>
             <td id="jugo2Insumo">0</td><td>Frutas</td>
         </tr>
         <tr>
             <td>Jugo3</td>
-            <td><input class="input" id="jugo3Stock" placeholder="Stock de heladera"></td>
+            <td><input class="input" id="jugo3Stock" placeholder="0"></td>
             <td><input class="input" id="jugo3Meta" value="600"></td>
             <td id="jugo3Faltante">0</td>
             <td id="jugo3Insumo">0</td><td>Frutas</td>
         </tr>
         <tr>
             <td>Jugo4</td>
-            <td><input class="input" id="jugo4Stock" placeholder="Stock de heladera"></td>
+            <td><input class="input" id="jugo4Stock" placeholder="0"></td>
             <td><input class="input" id="jugo4Meta" value="600"></td>
             <td id="jugo4Faltante">0</td>
             <td id="jugo4Insumo">0</td><td>Frutas</td>
         </tr>
-        <tr>
-            <td>Fideos Fettuccine</td>
-            <td><input class="input" id="fideoStock" placeholder="Stock de heladera"></td>
-            <td><input class="input" id="fideoMeta" value="600"></td>
-            <td id="fideoFaltante">0</td>
-            <td id="fideoInsumo">0</td><td>Masa</td>
-        </tr>
     </table>
-    <button onclick="calcularTodo()">Calcular</button>
+
+    <div class="container-buttons">
+        <button onclick="calcularTodo()">Calcular</button>
+        <button class="btn-limpiar" onclick="limpiarTodo()">Limpiar</button>
+    </div>
 
     <script>
+        const productos = ["solomillo", "jamon", "bolonia", "medallon", "fideo", "jugo", "jugo2", "jugo3", "jugo4"];
+
         function calcularTodo() {
             calcular("solomillo", 0.5);
             calcular("jamon", 1/10);
             calcular("bolonia", 10/100);
             calcular("medallon", 17/100);
+            calcular("fideo", 1/5);
             calcular("jugo", 50/100);
             calcular("jugo2", 50/100);
             calcular("jugo3", 50/100);
             calcular("jugo4", 50/100);
-            calcular("fideo", 1/5);
         }
 
         function calcular(nombre, factor) {
-            let stockInput = document.getElementById(nombre + "Stock");
-            let metaInput = document.getElementById(nombre + "Meta");
-            
-            if (!stockInput || !metaInput) return; // Seguridad por si falta un ID
-
-            let stock = parseInt(stockInput.value) || 0;
-            let meta = parseInt(metaInput.value) || 0;
+            let stock = parseInt(document.getElementById(nombre + "Stock").value) || 0;
+            let meta = parseInt(document.getElementById(nombre + "Meta").value) || 0;
             let faltante = meta - stock;
-            
             if (faltante < 0) faltante = 0;
-            
             let insumo = faltante * factor;
             let insumoText = (insumo % 1 === 0) ? insumo.toString() : insumo.toFixed(1);
-            
             document.getElementById(nombre + "Faltante").innerText = faltante;
             document.getElementById(nombre + "Insumo").innerText = insumoText;
+        }
+
+        function limpiarTodo() {
+            productos.forEach(p => {
+                document.getElementById(p + "Stock").value = "0";
+                document.getElementById(p + "Faltante").innerText = "0";
+                document.getElementById(p + "Insumo").innerText = "0";
+            });
         }
     </script>
 </body>
