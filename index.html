@@ -7,44 +7,45 @@
         body { font-family: "Nunito", Arial, sans-serif; background: #000; color: #ffb6e6; margin: 0; padding: 20px; }
         h1 { text-align: center; margin-top: 10px; margin-bottom: 25px; font-size: 32px; letter-spacing: 1px; color: #ffb6e6; }
         .logo { display: block; margin: 0 auto 15px auto; width: 180px; filter: drop-shadow(0 0 10px rgba(255,182,230,0.8)); }
+        
         table { width: 100%; border-collapse: collapse; background: rgba(255, 182, 230, 0.1); border-radius: 12px; overflow: hidden; }
         th { background: rgba(255, 182, 230, 0.2); padding: 12px; font-size: 18px; color: #ffb6e6; }
         td { padding: 10px; text-align: center; font-size: 16px; color: #ffb6e6; }
         tr:nth-child(even) { background: rgba(255, 182, 230, 0.08); }
+        
         .input { width: 130px; padding: 6px; border-radius: 6px; border: none; text-align: center; background: rgba(255,182,230,0.8); color: #000; font-weight: bold; }
         
-        /* CONTENEDOR DE BOTONES - Asegúrate de que esto esté visible */
-        .container-buttons { 
-            text-align: center; 
-            margin: 40px 0; 
-            display: block; 
-            clear: both;
-        }
+        .container-buttons { text-align: center; margin-top: 30px; }
 
-        /* ESTILO DE BOTONES REFORZADO */
+        /* ESTILO CON IMAGEN DE FONDO */
         button { 
-            background-color: #ffb6e6; /* Color rosa base */
+            width: 180px; /* Ajustamos tamaño para que luzca la imagen */
+            height: 60px;
             color: #000; 
-            padding: 15px 35px; 
             font-size: 18px; 
             font-weight: bold;
-            border: 3px solid #fff; /* Borde blanco para que resalte */
-            border-radius: 20px; 
+            border: 2px solid #ffb6e6; 
+            border-radius: 15px; 
             cursor: pointer; 
-            box-shadow: 0 0 20px rgba(255,182,230,0.6); 
-            transition: 0.3s; 
-            margin: 10px;
-            display: inline-block;
+            margin: 0 15px;
+            transition: 0.3s;
+            
+            /* Aquí cargamos tu imagen */
+            background-image: url('IMAGENBOTON'); 
+            background-size: cover;
+            background-position: center;
+            box-shadow: 0 0 15px rgba(255,182,230,0.5);
         }
 
         button:hover { 
             transform: scale(1.1); 
-            background-color: #ffd3f2;
-            box-shadow: 0 0 30px rgba(255,182,230,1);
+            box-shadow: 0 0 25px rgba(255,182,230,0.9);
+            filter: brightness(1.1);
         }
 
-        .btn-limpiar { 
-            background-color: #ff85d1; /* Un rosa más fuerte */
+        /* Si quieres que el de limpiar sea un poquito diferente */
+        .btn-limpiar {
+            filter: hue-rotate(320deg); /* Cambia ligeramente el tono del rosa */
         }
     </style>
 </head>
@@ -61,74 +62,20 @@
             <th>Insumos necesarios</th>
             <th><span style="font-size:12px;color:#bbb;font-style:italic;">Ingrediente que debes <br>sacar de la heladera</span></th>
         </tr>
-        <tr>
-            <td>Solomillo de res</td>
-            <td><input class="input" id="solomilloStock" placeholder="0"></td>
-            <td><input class="input" id="solomilloMeta" value="600"></td>
-            <td id="solomilloFaltante">0</td>
-            <td id="solomilloInsumo">0</td><td>Lomo de ternera</td>
-        </tr>
-        <tr>
-            <td>Jamón en cubos</td>
-            <td><input class="input" id="jamonStock" placeholder="0"></td>
-            <td><input class="input" id="jamonMeta" value="600"></td>
-            <td id="jamonFaltante">0</td>
-            <td id="jamonInsumo">0</td><td>Jamón rebanado</td>
-        </tr>
-        <tr>
-            <td>Bolonia en rodajas</td>
-            <td><input class="input" id="boloniaStock" placeholder="0"></td>
-            <td><input class="input" id="boloniaMeta" value="600"></td>
-            <td id="boloniaFaltante">0</td>
-            <td id="boloniaInsumo">0</td><td>Bolonia</td>
-        </tr>
-        <tr>
-            <td>Medallones de carne</td>
-            <td><input class="input" id="medallonStock" placeholder="0"></td>
-            <td><input class="input" id="medallonMeta" value="600"></td>
-            <td id="medallonFaltante">0</td>
-            <td id="medallonInsumo">0</td><td>Carne de venado</td>
-        </tr>
-        <tr>
-            <td>Fideos Fettuccine</td>
-            <td><input class="input" id="fideoStock" placeholder="0"></td>
-            <td><input class="input" id="fideoMeta" value="600"></td>
-            <td id="fideoFaltante">0</td>
-            <td id="fideoInsumo">0</td><td>Masa</td>
-        </tr>
-        <tr>
-            <td>Jugo1</td>
-            <td><input class="input" id="jugoStock" placeholder="0"></td>
-            <td><input class="input" id="jugoMeta" value="600"></td>
-            <td id="jugoFaltante">0</td>
-            <td id="jugoInsumo">0</td><td>Frutas</td>
-        </tr>
-        <tr>
-            <td>Jugo2</td>
-            <td><input class="input" id="jugo2Stock" placeholder="0"></td>
-            <td><input class="input" id="jugo2Meta" value="600"></td>
-            <td id="jugo2Faltante">0</td>
-            <td id="jugo2Insumo">0</td><td>Frutas</td>
-        </tr>
-        <tr>
-            <td>Jugo3</td>
-            <td><input class="input" id="jugo3Stock" placeholder="0"></td>
-            <td><input class="input" id="jugo3Meta" value="600"></td>
-            <td id="jugo3Faltante">0</td>
-            <td id="jugo3Insumo">0</td><td>Frutas</td>
-        </tr>
-        <tr>
-            <td>Jugo4</td>
-            <td><input class="input" id="jugo4Stock" placeholder="0"></td>
-            <td><input class="input" id="jugo4Meta" value="600"></td>
-            <td id="jugo4Faltante">0</td>
-            <td id="jugo4Insumo">0</td><td>Frutas</td>
-        </tr>
+        <tr><td>Solomillo de res</td><td><input class="input" id="solomilloStock" placeholder="0"></td><td><input class="input" id="solomilloMeta" value="600"></td><td id="solomilloFaltante">0</td><td id="solomilloInsumo">0</td><td>Lomo de ternera</td></tr>
+        <tr><td>Jamón en cubos</td><td><input class="input" id="jamonStock" placeholder="0"></td><td><input class="input" id="jamonMeta" value="600"></td><td id="jamonFaltante">0</td><td id="jamonInsumo">0</td><td>Jamón rebanado</td></tr>
+        <tr><td>Bolonia en rodajas</td><td><input class="input" id="boloniaStock" placeholder="0"></td><td><input class="input" id="boloniaMeta" value="600"></td><td id="boloniaFaltante">0</td><td id="boloniaInsumo">0</td><td>Bolonia</td></tr>
+        <tr><td>Medallones de carne</td><td><input class="input" id="medallonStock" placeholder="0"></td><td><input class="input" id="medallonMeta" value="600"></td><td id="medallonFaltante">0</td><td id="medallonInsumo">0</td><td>Carne de venado</td></tr>
+        <tr><td>Fideos Fettuccine</td><td><input class="input" id="fideoStock" placeholder="0"></td><td><input class="input" id="fideoMeta" value="600"></td><td id="fideoFaltante">0</td><td id="fideoInsumo">0</td><td>Masa</td></tr>
+        <tr><td>Jugo1</td><td><input class="input" id="jugoStock" placeholder="0"></td><td><input class="input" id="jugoMeta" value="600"></td><td id="jugoFaltante">0</td><td id="jugoInsumo">0</td><td>Frutas</td></tr>
+        <tr><td>Jugo2</td><td><input class="input" id="jugo2Stock" placeholder="0"></td><td><input class="input" id="jugo2Meta" value="600"></td><td id="jugo2Faltante">0</td><td id="jugo2Insumo">0</td><td>Frutas</td></tr>
+        <tr><td>Jugo3</td><td><input class="input" id="jugo3Stock" placeholder="0"></td><td><input class="input" id="jugo3Meta" value="600"></td><td id="jugo3Faltante">0</td><td id="jugo3Insumo">0</td><td>Frutas</td></tr>
+        <tr><td>Jugo4</td><td><input class="input" id="jugo4Stock" placeholder="0"></td><td><input class="input" id="jugo4Meta" value="600"></td><td id="jugo4Faltante">0</td><td id="jugo4Insumo">0</td><td>Frutas</td></tr>
     </table>
 
     <div class="container-buttons">
-        <button onclick="calcularTodo()">✨ CALCULAR ✨</button>
-        <button class="btn-limpiar" onclick="limpiarTodo()">🧹 LIMPIAR</button>
+        <button onclick="calcularTodo()">Calcular</button>
+        <button class="btn-limpiar" onclick="limpiarTodo()">Limpiar</button>
     </div>
 
     <script>
