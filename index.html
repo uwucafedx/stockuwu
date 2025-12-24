@@ -3,34 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <title>UwU Café – Calculadora de Insumos</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Annie+Use+Your+Telescope&display=swap" rel="stylesheet">
+
     <style>
-        body { font-family: "Nunito", Arial, sans-serif; background: #000; color: #ffb6e6; margin: 0; padding: 20px; }
-        h1 { text-align: center; margin-top: 10px; margin-bottom: 25px; font-size: 32px; letter-spacing: 1px; color: #ffb6e6; }
+        body { 
+            font-family: "Annie Use Your Telescope", cursive; 
+            background: #000; 
+            color: #ffb6e6; 
+            margin: 0; 
+            padding: 20px; 
+            font-size: 20px; /* Un poco más grande para que se lea bien la fuente */
+        }
+        
+        h1 { text-align: center; margin-top: 10px; margin-bottom: 25px; font-size: 40px; letter-spacing: 1px; color: #ffb6e6; }
         .logo { display: block; margin: 0 auto 15px auto; width: 180px; filter: drop-shadow(0 0 10px rgba(255,182,230,0.8)); }
         
         table { width: 100%; border-collapse: collapse; background: rgba(255, 182, 230, 0.1); border-radius: 12px; overflow: hidden; }
-        th { background: rgba(255, 182, 230, 0.2); padding: 12px; font-size: 18px; color: #ffb6e6; }
-        td { padding: 10px; text-align: center; font-size: 16px; color: #ffb6e6; }
+        th { background: rgba(255, 182, 230, 0.2); padding: 12px; font-size: 22px; color: #ffb6e6; }
+        td { padding: 10px; text-align: center; color: #ffb6e6; }
         tr:nth-child(even) { background: rgba(255, 182, 230, 0.08); }
         
-        .input { width: 130px; padding: 6px; border-radius: 6px; border: none; text-align: center; background: rgba(255,182,230,0.8); color: #000; font-weight: bold; }
+        .input { 
+            width: 130px; 
+            padding: 6px; 
+            border-radius: 6px; 
+            border: none; 
+            text-align: center; 
+            background: rgba(255,182,230,0.8); 
+            color: #000; 
+            font-weight: bold;
+            font-family: "Annie Use Your Telescope", cursive;
+            font-size: 18px;
+        }
         
         .container-buttons { text-align: center; margin-top: 30px; }
 
-        /* ESTILO CON IMAGEN DE FONDO */
+        /* Estilo de los botones con tu imagen de fondo */
         button { 
-            width: 180px; /* Ajustamos tamaño para que luzca la imagen */
-            height: 60px;
+            width: 200px; 
+            height: 70px;
             color: #000; 
-            font-size: 18px; 
+            font-size: 24px; 
             font-weight: bold;
+            font-family: "Annie Use Your Telescope", cursive;
             border: 2px solid #ffb6e6; 
-            border-radius: 15px; 
+            border-radius: 20px; 
             cursor: pointer; 
             margin: 0 15px;
             transition: 0.3s;
-            
-            /* Aquí cargamos tu imagen */
             background-image: url('IMAGENBOTON'); 
             background-size: cover;
             background-position: center;
@@ -43,9 +66,8 @@
             filter: brightness(1.1);
         }
 
-        /* Si quieres que el de limpiar sea un poquito diferente */
         .btn-limpiar {
-            filter: hue-rotate(320deg); /* Cambia ligeramente el tono del rosa */
+            filter: hue-rotate(320deg); /* Diferencia un poco el color del botón limpiar */
         }
     </style>
 </head>
@@ -60,7 +82,7 @@
             <th>Stock deseado</th>
             <th>Faltante</th>
             <th>Insumos necesarios</th>
-            <th><span style="font-size:12px;color:#bbb;font-style:italic;">Ingrediente que debes <br>sacar de la heladera</span></th>
+            <th><span style="font-size:14px;color:#bbb;font-style:italic;">Ingrediente que debes <br>sacar de la heladera</span></th>
         </tr>
         <tr><td>Solomillo de res</td><td><input class="input" id="solomilloStock" placeholder="0"></td><td><input class="input" id="solomilloMeta" value="600"></td><td id="solomilloFaltante">0</td><td id="solomilloInsumo">0</td><td>Lomo de ternera</td></tr>
         <tr><td>Jamón en cubos</td><td><input class="input" id="jamonStock" placeholder="0"></td><td><input class="input" id="jamonMeta" value="600"></td><td id="jamonFaltante">0</td><td id="jamonInsumo">0</td><td>Jamón rebanado</td></tr>
