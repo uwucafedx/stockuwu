@@ -65,24 +65,24 @@
         </tr>
         <tr>
             <td>Jugo2</td>
-            <td><input class="input" id="jugoStock" placeholder="Stock de heladera"></td>
-            <td><input class="input" id="jugoMeta" value="600"></td>
-            <td id="jugoFaltante">0</td>
-            <td id="jugoInsumo">0</td><td>Frutas</td>
+            <td><input class="input" id="jugo2Stock" placeholder="Stock de heladera"></td>
+            <td><input class="input" id="jugo2Meta" value="600"></td>
+            <td id="jugo2Faltante">0</td>
+            <td id="jugo2Insumo">0</td><td>Frutas</td>
         </tr>
         <tr>
             <td>Jugo3</td>
-            <td><input class="input" id="jugoStock" placeholder="Stock de heladera"></td>
-            <td><input class="input" id="jugoMeta" value="600"></td>
-            <td id="jugoFaltante">0</td>
-            <td id="jugoInsumo">0</td><td>Frutas</td>
+            <td><input class="input" id="jugo3Stock" placeholder="Stock de heladera"></td>
+            <td><input class="input" id="jugo3Meta" value="600"></td>
+            <td id="jugo3Faltante">0</td>
+            <td id="jugo3Insumo">0</td><td>Frutas</td>
         </tr>
         <tr>
             <td>Jugo4</td>
-            <td><input class="input" id="jugoStock" placeholder="Stock de heladera"></td>
-            <td><input class="input" id="jugoMeta" value="600"></td>
-            <td id="jugoFaltante">0</td>
-            <td id="jugoInsumo">0</td><td>Frutas</td>
+            <td><input class="input" id="jugo4Stock" placeholder="Stock de heladera"></td>
+            <td><input class="input" id="jugo4Meta" value="600"></td>
+            <td id="jugo4Faltante">0</td>
+            <td id="jugo4Insumo">0</td><td>Frutas</td>
         </tr>
         <tr>
             <td>Fideos Fettuccine</td>
@@ -93,6 +93,7 @@
         </tr>
     </table>
     <button onclick="calcularTodo()">Calcular</button>
+
     <script>
         function calcularTodo() {
             calcular("solomillo", 0.5);
@@ -105,13 +106,22 @@
             calcular("jugo4", 50/100);
             calcular("fideo", 1/5);
         }
+
         function calcular(nombre, factor) {
-            let stock = parseInt(document.getElementById(nombre + "Stock").value) || 0;
-            let meta = parseInt(document.getElementById(nombre + "Meta").value) || 0;
+            let stockInput = document.getElementById(nombre + "Stock");
+            let metaInput = document.getElementById(nombre + "Meta");
+            
+            if (!stockInput || !metaInput) return; // Seguridad por si falta un ID
+
+            let stock = parseInt(stockInput.value) || 0;
+            let meta = parseInt(metaInput.value) || 0;
             let faltante = meta - stock;
+            
             if (faltante < 0) faltante = 0;
+            
             let insumo = faltante * factor;
             let insumoText = (insumo % 1 === 0) ? insumo.toString() : insumo.toFixed(1);
+            
             document.getElementById(nombre + "Faltante").innerText = faltante;
             document.getElementById(nombre + "Insumo").innerText = insumoText;
         }
