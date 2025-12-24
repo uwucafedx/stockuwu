@@ -6,25 +6,24 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Annie+Use+Your+Telescope&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Pangolin&display=swap" rel="stylesheet">
 
     <style>
         body { 
-            font-family: "Annie Use Your Telescope", cursive; 
+            font-family: 'Pangolin', cursive; 
             background: #000; 
             color: #ffb6e6; 
             margin: 0; 
-            padding: 10px; /* Reducido de 20 a 10 */
-            font-size: 18px; /* Reducido un poco */
+            padding: 10px; 
+            font-size: 17px; 
         }
         
-        h1 { text-align: center; margin: 5px 0 15px 0; font-size: 32px; color: #ffb6e6; }
-        .logo { display: block; margin: 0 auto 5px auto; width: 140px; filter: drop-shadow(0 0 8px rgba(255,182,230,0.8)); }
+        h1 { text-align: center; margin: 5px 0 10px 0; font-size: 28px; color: #ffb6e6; }
+        .logo { display: block; margin: 0 auto 5px auto; width: 120px; filter: drop-shadow(0 0 8px rgba(255,182,230,0.8)); }
         
-        /* Tabla más compacta */
         table { 
-            width: 90%; /* Ya no ocupa todo el ancho, se ve más centrada */
-            max-width: 1000px;
+            width: 95%; 
+            max-width: 900px;
             margin: 0 auto;
             border-collapse: collapse; 
             background: rgba(255, 182, 230, 0.1); 
@@ -32,12 +31,12 @@
             overflow: hidden; 
         }
         
-        th { background: rgba(255, 182, 230, 0.2); padding: 8px; font-size: 20px; }
-        td { padding: 6px; text-align: center; } /* Padding reducido para que sea más baja */
+        th { background: rgba(255, 182, 230, 0.2); padding: 8px; font-size: 19px; }
+        td { padding: 5px; text-align: center; } 
         tr:nth-child(even) { background: rgba(255, 182, 230, 0.08); }
         
         .input { 
-            width: 100px; /* Más angosto */
+            width: 90px; 
             padding: 4px; 
             border-radius: 6px; 
             border: none; 
@@ -45,20 +44,19 @@
             background: rgba(255,182,230,0.8); 
             color: #000; 
             font-weight: bold;
-            font-family: "Annie Use Your Telescope", cursive;
-            font-size: 16px;
+            font-family: 'Pangolin', cursive;
+            font-size: 15px;
         }
         
         .container-buttons { text-align: center; margin-top: 15px; }
 
-        /* Botones más proporcionados */
         button { 
-            width: 160px; /* Reducido de 200 a 160 */
-            height: 55px; /* Reducido de 70 a 55 */
+            width: 150px; 
+            height: 50px;
             color: #000; 
-            font-size: 22px; 
+            font-size: 20px; 
             font-weight: bold;
-            font-family: "Annie Use Your Telescope", cursive;
+            font-family: 'Pangolin', cursive;
             border: 2px solid #ffb6e6; 
             border-radius: 15px; 
             cursor: pointer; 
@@ -90,7 +88,8 @@
             <th>Stock actual</th>
             <th>Stock deseado</th>
             <th>Faltante</th>
-            <th>Insumos</th> <th><span style="font-size:12px;color:#bbb;font-style:italic;">Ingrediente heladera</span></th>
+            <th>Insumos</th>
+            <th><span style="font-size:11px;color:#bbb;font-style:italic;">Ingrediente heladera</span></th>
         </tr>
         <tr><td>Solomillo de res</td><td><input class="input" id="solomilloStock" placeholder="0"></td><td><input class="input" id="solomilloMeta" value="600"></td><td id="solomilloFaltante">0</td><td id="solomilloInsumo">0</td><td>Lomo de ternera</td></tr>
         <tr><td>Jamón en cubos</td><td><input class="input" id="jamonStock" placeholder="0"></td><td><input class="input" id="jamonMeta" value="600"></td><td id="jamonFaltante">0</td><td id="jamonInsumo">0</td><td>Jamón rebanado</td></tr>
