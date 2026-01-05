@@ -3,60 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <title>UwU Café – Calculadora de Insumos</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Pangolin&display=swap" rel="stylesheet">
-
     <style>
-        body { 
-            font-family: 'Pangolin', cursive; 
-            background: #000; 
-            color: #ffb6e6; 
-            margin: 0; 
-            padding: 10px; 
-            font-size: 17px; 
-        }
+        /* Volvemos a la fuente original */
+        body { font-family: "Nunito", Arial, sans-serif; background: #000; color: #ffb6e6; margin: 0; padding: 20px; }
         
-        h1 { text-align: center; margin: 5px 0 10px 0; font-size: 28px; color: #ffb6e6; }
-        .logo { display: block; margin: 0 auto 5px auto; width: 120px; filter: drop-shadow(0 0 8px rgba(255,182,230,0.8)); }
+        h1 { text-align: center; margin-top: 10px; margin-bottom: 25px; font-size: 32px; letter-spacing: 1px; color: #ffb6e6; }
+        .logo { display: block; margin: 0 auto 15px auto; width: 180px; filter: drop-shadow(0 0 10px rgba(255,182,230,0.8)); }
         
-        table { 
-            width: 95%; 
-            max-width: 900px;
-            margin: 0 auto;
-            border-collapse: collapse; 
-            background: rgba(255, 182, 230, 0.1); 
-            border-radius: 12px; 
-            overflow: hidden; 
-        }
-        
-        th { background: rgba(255, 182, 230, 0.2); padding: 8px; font-size: 19px; }
-        td { padding: 5px; text-align: center; } 
+        table { width: 100%; border-collapse: collapse; background: rgba(255, 182, 230, 0.1); border-radius: 12px; overflow: hidden; }
+        th { background: rgba(255, 182, 230, 0.2); padding: 12px; font-size: 18px; color: #ffb6e6; }
+        td { padding: 10px; text-align: center; font-size: 16px; color: #ffb6e6; }
         tr:nth-child(even) { background: rgba(255, 182, 230, 0.08); }
         
-        .input { 
-            width: 90px; 
-            padding: 4px; 
-            border-radius: 6px; 
-            border: none; 
-            text-align: center; 
-            background: rgba(255,182,230,0.8); 
-            color: #000; 
-            font-weight: bold;
-            font-family: 'Pangolin', cursive;
-            font-size: 15px;
-        }
+        .input { width: 130px; padding: 6px; border-radius: 6px; border: none; text-align: center; background: rgba(255,182,230,0.8); color: #000; font-weight: bold; }
         
-        .container-buttons { text-align: center; margin-top: 15px; }
+        .container-buttons { text-align: center; margin-top: 25px; }
 
+        /* Botones con tu imagen de fondo */
         button { 
-            width: 150px; 
-            height: 50px;
+            width: 180px; 
+            height: 60px;
             color: #000; 
-            font-size: 20px; 
+            font-size: 18px; 
             font-weight: bold;
-            font-family: 'Pangolin', cursive;
             border: 2px solid #ffb6e6; 
             border-radius: 15px; 
             cursor: pointer; 
@@ -65,11 +34,11 @@
             background-image: url('IMAGENBOTON'); 
             background-size: cover;
             background-position: center;
-            box-shadow: 0 0 10px rgba(255,182,230,0.4);
+            box-shadow: 0 0 15px rgba(255,182,230,0.5);
         }
 
         button:hover { 
-            transform: scale(1.05); 
+            transform: scale(1.1); 
             filter: brightness(1.1);
         }
 
@@ -88,18 +57,20 @@
             <th>Stock actual</th>
             <th>Stock deseado</th>
             <th>Faltante</th>
-            <th>Insumos</th>
-            <th><span style="font-size:11px;color:#bbb;font-style:italic;">Ingrediente heladera</span></th>
+            <th>Insumos necesarios</th>
+            <th><span style="font-size:12px;color:#bbb;font-style:italic;">Ingrediente heladera</span></th>
         </tr>
         <tr><td>Solomillo de res</td><td><input class="input" id="solomilloStock" placeholder="0"></td><td><input class="input" id="solomilloMeta" value="600"></td><td id="solomilloFaltante">0</td><td id="solomilloInsumo">0</td><td>Lomo de ternera</td></tr>
         <tr><td>Jamón en cubos</td><td><input class="input" id="jamonStock" placeholder="0"></td><td><input class="input" id="jamonMeta" value="600"></td><td id="jamonFaltante">0</td><td id="jamonInsumo">0</td><td>Jamón rebanado</td></tr>
         <tr><td>Bolonia en rodajas</td><td><input class="input" id="boloniaStock" placeholder="0"></td><td><input class="input" id="boloniaMeta" value="600"></td><td id="boloniaFaltante">0</td><td id="boloniaInsumo">0</td><td>Bolonia</td></tr>
         <tr><td>Medallones de carne</td><td><input class="input" id="medallonStock" placeholder="0"></td><td><input class="input" id="medallonMeta" value="600"></td><td id="medallonFaltante">0</td><td id="medallonInsumo">0</td><td>Carne de venado</td></tr>
+        
         <tr><td>Fideos Fettuccine</td><td><input class="input" id="fideoStock" placeholder="0"></td><td><input class="input" id="fideoMeta" value="600"></td><td id="fideoFaltante">0</td><td id="fideoInsumo">0</td><td>Masa</td></tr>
-        <tr><td>Jugo1</td><td><input class="input" id="jugoStock" placeholder="0"></td><td><input class="input" id="jugoMeta" value="600"></td><td id="jugoFaltante">0</td><td id="jugoInsumo">0</td><td>Frutas</td></tr>
-        <tr><td>Jugo2</td><td><input class="input" id="jugo2Stock" placeholder="0"></td><td><input class="input" id="jugo2Meta" value="600"></td><td id="jugo2Faltante">0</td><td id="jugo2Insumo">0</td><td>Frutas</td></tr>
-        <tr><td>Jugo3</td><td><input class="input" id="jugo3Stock" placeholder="0"></td><td><input class="input" id="jugo3Meta" value="600"></td><td id="jugo3Faltante">0</td><td id="jugo3Insumo">0</td><td>Frutas</td></tr>
-        <tr><td>Jugo4</td><td><input class="input" id="jugo4Stock" placeholder="0"></td><td><input class="input" id="jugo4Meta" value="600"></td><td id="jugo4Faltante">0</td><td id="jugo4Insumo">0</td><td>Frutas</td></tr>
+        
+        <tr><td>Jugo de Naranja</td><td><input class="input" id="jugoStock" placeholder="0"></td><td><input class="input" id="jugoMeta" value="600"></td><td id="jugoFaltante">0</td><td id="jugoInsumo">0</td><td>Naranjas</td></tr>
+        <tr><td>Jugo de Piña</td><td><input class="input" id="jugo2Stock" placeholder="0"></td><td><input class="input" id="jugo2Meta" value="600"></td><td id="jugo2Faltante">0</td><td id="jugo2Insumo">0</td><td>Piñas</td></tr>
+        <tr><td>Jugo de Fresa</td><td><input class="input" id="jugo3Stock" placeholder="0"></td><td><input class="input" id="jugo3Meta" value="600"></td><td id="jugo3Faltante">0</td><td id="jugo3Insumo">0</td><td>Fresas</td></tr>
+        <tr><td>Jugo de Manzana</td><td><input class="input" id="jugo4Stock" placeholder="0"></td><td><input class="input" id="jugo4Meta" value="600"></td><td id="jugo4Faltante">0</td><td id="jugo4Insumo">0</td><td>Manzanas</td></tr>
     </table>
 
     <div class="container-buttons">
