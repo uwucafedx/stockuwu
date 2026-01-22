@@ -77,7 +77,6 @@
             filter: hue-rotate(320deg);
         }
         
-        /* Estilo para las Notas */
         .notas-container {
             max-width: 900px;
             margin: 20px auto;
@@ -85,7 +84,7 @@
         }
         textarea {
             width: 95%;
-            height: 80px;
+            height: 100px;
             background: rgba(255, 182, 230, 0.1);
             border: 1px solid #ffb6e6;
             border-radius: 10px;
@@ -93,6 +92,7 @@
             padding: 10px;
             font-family: 'Pangolin', cursive;
             resize: none;
+            font-size: 16px;
         }
     </style>
 </head>
@@ -113,9 +113,7 @@
         <tr><td>Jamón en cubos</td><td><input class="input" id="jamonStock" placeholder="0"></td><td><input class="input" id="jamonMeta" value="800"></td><td id="jamonFaltante">0</td><td id="jamonInsumo">0</td><td>Jamón rebanado</td></tr>
         <tr><td>Bolonia en rodajas</td><td><input class="input" id="boloniaStock" placeholder="0"></td><td><input class="input" id="boloniaMeta" value="800"></td><td id="boloniaFaltante">0</td><td id="boloniaInsumo">0</td><td>Bolonia</td></tr>
         <tr><td>Medallones de carne</td><td><input class="input" id="medallonStock" placeholder="0"></td><td><input class="input" id="medallonMeta" value="800"></td><td id="medallonFaltante">0</td><td id="medallonInsumo">0</td><td>Carne de venado</td></tr>
-        
-        <tr><td>Fideos Fettuccine</td><td><input class="input" id="fideoStock" placeholder="0"></td><td><input class="input" id="fideoMeta" value="800"></td><td id="fideoFaltante">0</td><td id="fideoInsumo">0</td><td>Masa 🍜</td></tr>
-        
+        <tr><td>Fideos Fettuccine</td><td><input class="input" id="fideoStock" placeholder="0"></td><td><input class="input" id="fideoMeta" value="800"></td><td id="fideoFaltante">0</td><td id="fideoInsumo">0</td><td>Masa</td></tr>
         <tr><td>Jugo de Naranja</td><td><input class="input" id="jugoStock" placeholder="0"></td><td><input class="input" id="jugoMeta" value="800"></td><td id="jugoFaltante">0</td><td id="jugoInsumo">0</td><td>Naranjas</td></tr>
         <tr><td>Jugo de Piña</td><td><input class="input" id="jugo2Stock" placeholder="0"></td><td><input class="input" id="jugo2Meta" value="800"></td><td id="jugo2Faltante">0</td><td id="jugo2Insumo">0</td><td>Piñas</td></tr>
         <tr><td>Jugo de Fresa</td><td><input class="input" id="jugo3Stock" placeholder="0"></td><td><input class="input" id="jugo3Meta" value="800"></td><td id="jugo3Faltante">0</td><td id="jugo3Insumo">0</td><td>Fresas</td></tr>
@@ -129,7 +127,7 @@
 
     <div class="notas-container">
         <h3>Notas ✏️</h3>
-        <textarea placeholder="Escribe tus recordatorios aquí..."></textarea>
+        <textarea></textarea>
     </div>
 
     <script>
@@ -164,6 +162,7 @@
                 document.getElementById(p + "Faltante").innerText = "0";
                 document.getElementById(p + "Insumo").innerText = "0";
             });
+            document.querySelector('textarea').value = "";
         }
     </script>
 </body>
