@@ -62,24 +62,26 @@
         const extraItems = ["medallones de carne", "jamón rebanado", "lomo de ternera", "solomillo de res", "masa", "jugo de fresa", "jugo de naranja", "jugo de piña", "jugo de manzana"];
 
         function timeSince(dateString) {
-            // Si es un guion o está vacío, no mostrar tiempo
-            if (!dateString || dateString === "-" || dateString === "" || dateString === "undefined") return "Sin movimientos";
+            if (!dateString || dateString === "-" || dateString === "" || dateString === "undefined") return "Sin registros";
             
             try {
-                // Limpiar la fecha (quitar comas o caracteres raros)
+                // Limpieza profunda: extraemos solo los dígitos
                 const parts = String(dateString).match(/\d+/g);
-                if (!parts || parts.length < 3) return "Sin movimientos";
+                if (!parts || parts.length < 3) return "Sin registros";
 
-                // p[0]=día, p[1]=mes, p[2]=año, p[3]=hora, p[4]=min
-                const day = parseInt(parts[0]);
-                const month = parseInt(parts[1]) - 1;
+                // Construimos la fecha (Año, Mes-1, Día, Hora, Min, Seg)
                 let year = parseInt(parts[2]);
                 if (year < 100) year += 2000;
+                
+                const lastUpdate = new Date(year, parseInt(parts[1]) - 1, parseInt(parts[0]), parts[3]||0, parts[4]||0, parts[5]||0);
+                const now = new Date();
+                
+                // Diferencia en segundos
+                const diffSec = Math.floor((now - lastUpdate) / 1000);
 
-                const lastUpdate = new Date(year, month, day, parts[3]||0, parts[4]||0, parts[5]||0);
-                const diffSec = Math.floor((new Date() - lastUpdate) / 1000);
-
-                if (isNaN(diffSec) || diffSec > 10000000) return "Sin movimientos";
+                // Validamos que la diferencia sea real (evita los 35000 días)
+                if (isNaN(diffSec) || diffSec > 1000000 || diffSec < -60) return "Sin registros";
+                
                 if (diffSec < 10) return "Recién ahora";
                 if (diffSec < 60) return `Hace ${diffSec} seg`;
                 
@@ -90,7 +92,9 @@
                 if (diffHrs < 24) return `Hace ${diffHrs} h`;
                 
                 return `Hace ${Math.floor(diffHrs/24)} d`;
-            } catch (e) { return "Sin movimientos"; }
+            } catch (e) { 
+                return "Sin registros"; 
+            }
         }
 
         function updateUserUI() {
@@ -125,15 +129,18 @@
             
             inventoryData.forEach((row, i) => {
                 const name = row[0] ? row[0].toString().trim() : "";
-                // ELIMINAR NOTAS: Si el nombre tiene "nota", no lo dibujamos
+                
+                // Filtro para eliminar encabezados y NOTAS
                 if (i < 2 || !name || name.toLowerCase().includes("nota") || name.toLowerCase() === "producto") return;
                 
                 const isExtra = extraItems.includes(name.toLowerCase());
+                const dateVal = row[dateIdx];
+                
                 const html = `
                     <div class="row">
                         <div class="prod-info">
                             <div class="prod-name">${emojis[name.toLowerCase()] || "📦"} ${name}</div>
-                            <div class="mod-time" style="color:${color}" data-date="${row[dateIdx]}">Modificado: ${timeSince(row[dateIdx])}</div>
+                            <div class="mod-time" style="color:${color}" data-date="${dateVal}">Modificado: ${timeSince(dateVal)}</div>
                         </div>
                         <div class="qty-box" style="background-color:${color}">${row[colIdx] || 0}</div>
                         <div class="input-group">
@@ -146,13 +153,13 @@
             });
         }
 
-        // Actualizar los minutos automáticamente cada 10 segundos
+        // Actualización automática cada 15 segundos
         setInterval(() => {
             document.querySelectorAll('.mod-time').forEach(el => {
                 const date = el.getAttribute('data-date');
                 el.innerText = "Modificado: " + timeSince(date);
             });
-        }, 10000);
+        }, 15000);
 
         async function saveAllChanges() {
             const inputs = document.querySelectorAll('.qty-input');
