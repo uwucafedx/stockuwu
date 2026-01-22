@@ -2,144 +2,181 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>UwU Café – Calculadora de Insumos</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Pangolin&display=swap" rel="stylesheet">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventario Pro</title>
     <style>
-        body { 
-            font-family: 'Pangolin', cursive; 
-            background: #000; 
-            color: #ffb6e6; 
-            margin: 0; 
-            padding: 10px; 
-            font-size: 18px; 
-        }
-        
-        h1 { text-align: center; margin: 5px 0 10px 0; font-size: 30px; color: #ffb6e6; }
-        .logo { display: block; margin: 0 auto 5px auto; width: 140px; filter: drop-shadow(0 0 8px rgba(255,182,230,0.8)); }
-        
-        table { 
-            width: 95%; 
-            max-width: 900px;
-            margin: 0 auto;
-            border-collapse: collapse; 
-            background: rgba(255, 182, 230, 0.1); 
-            border-radius: 12px; 
-            overflow: hidden; 
-        }
-        
-        th { background: rgba(255, 182, 230, 0.2); padding: 10px; font-size: 20px; }
-        td { padding: 6px; text-align: center; } 
-        tr:nth-child(even) { background: rgba(255, 182, 230, 0.08); }
-        
-        .input { 
-            width: 100px; 
-            padding: 5px; 
-            border-radius: 6px; 
-            border: none; 
-            text-align: center; 
-            background: rgba(255,182,230,0.8); 
-            color: #000; 
-            font-weight: bold;
-            font-family: 'Pangolin', cursive;
-            font-size: 16px;
-        }
-        
-        .container-buttons { text-align: center; margin-top: 15px; }
-
-        button { 
-            width: 160px; 
-            height: 55px;
-            color: #000; 
-            font-size: 22px; 
-            font-weight: bold;
-            font-family: 'Pangolin', cursive;
-            border: 2px solid #ffb6e6; 
-            border-radius: 15px; 
-            cursor: pointer; 
-            margin: 0 10px;
-            transition: 0.3s;
-            background-image: url('IMAGENBOTON'); 
-            background-size: cover;
-            background-position: center;
-            box-shadow: 0 0 10px rgba(255,182,230,0.4);
-        }
-
-        button:hover { 
-            transform: scale(1.05); 
-            filter: brightness(1.1);
-        }
-
-        .btn-limpiar {
-            filter: hue-rotate(320deg);
-        }
+        :root { --p-violet: #b35bd6; --bg-glass: rgba(30, 30, 30, 0.9); --p-light: #e0b3ff; }
+        body { font-family: 'Segoe UI', sans-serif; background: #000 url('Dise%C3%B1o%20sin%20t%C3%ADtulo%20(12).png') no-repeat center center fixed; background-size: cover; display: flex; flex-direction: column; align-items: center; padding: 10px; margin: 0; min-height: 100vh; }
+        h1 { color: #ffffff; letter-spacing: 2px; text-transform: uppercase; margin-top: 20px; text-shadow: 2px 2px 10px var(--p-violet); font-size: 1.5rem; }
+        .user-box { margin-bottom: 20px; font-weight: bold; color: #fff; background: rgba(40, 40, 40, 0.8); padding: 12px 20px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.2); display: flex; align-items: center; gap: 10px; }
+        select { padding: 8px; border-radius: 8px; border: 2px solid white; font-weight: bold; cursor: pointer; outline: none; }
+        .inventory-card { background: var(--bg-glass); color: white; padding: 15px; border-radius: 20px; width: 95%; max-width: 500px; box-shadow: 0 10px 30px rgba(0,0,0,0.8); margin-bottom: 20px; backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); display: none; }
+        .section-title { text-align: center; color: var(--p-light); font-weight: bold; text-transform: uppercase; font-size: 0.8em; margin: 20px 0 10px 0; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 10px; letter-spacing: 1px; }
+        .row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+        .prod-info { flex: 1; }
+        .prod-name { font-size: 0.85em; font-weight: bold; text-transform: uppercase; }
+        .mod-time { font-size: 0.7em; font-style: italic; opacity: 0.8; margin-top: 2px; }
+        .qty-box { min-width: 40px; height: 30px; display: flex; align-items: center; justify-content: center; border-radius: 8px; font-weight: bold; font-size: 0.85em; margin-right: 10px; }
+        .input-group { display: flex; gap: 5px; }
+        input[type="number"] { width: 45px; padding: 5px; border-radius: 6px; border: none; text-align: center; font-weight: bold; }
+        .btn-save-all { color: white; border: none; padding: 15px; border-radius: 12px; cursor: pointer; font-weight: bold; width: 95%; max-width: 500px; margin-bottom: 30px; }
+        #loading-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.9); display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 1000; color: white; }
     </style>
 </head>
-<body>
-    <img src="logo.png" class="logo" alt="UwU Café">
-    <h1>🌸 Calculadora de Insumos – UwU Café</h1>
-    
-    <table>
-        <tr>
-            <th>Producto</th>
-            <th>Stock actual</th>
-            <th>Stock deseado</th>
-            <th>Faltante</th>
-            <th>Insumos</th>
-            <th><span style="font-size:12px;color:#bbb;font-style:italic;">Ingrediente heladera</span></th>
-        </tr>
-        <tr><td>Solomillo de res</td><td><input class="input" id="solomilloStock" placeholder="0"></td><td><input class="input" id="solomilloMeta" value="800"></td><td id="solomilloFaltante">0</td><td id="solomilloInsumo">0</td><td>Lomo de ternera</td></tr>
-        <tr><td>Jamón en cubos</td><td><input class="input" id="jamonStock" placeholder="0"></td><td><input class="input" id="jamonMeta" value="800"></td><td id="jamonFaltante">0</td><td id="jamonInsumo">0</td><td>Jamón rebanado</td></tr>
-        <tr><td>Bolonia en rodajas</td><td><input class="input" id="boloniaStock" placeholder="0"></td><td><input class="input" id="boloniaMeta" value="800"></td><td id="boloniaFaltante">0</td><td id="boloniaInsumo">0</td><td>Bolonia</td></tr>
-        <tr><td>Medallones de carne</td><td><input class="input" id="medallonStock" placeholder="0"></td><td><input class="input" id="medallonMeta" value="800"></td><td id="medallonFaltante">0</td><td id="medallonInsumo">0</td><td>Carne de venado</td></tr>
-        <tr><td>Fideos Fettuccine</td><td><input class="input" id="fideoStock" placeholder="0"></td><td><input class="input" id="fideoMeta" value="800"></td><td id="fideoFaltante">0</td><td id="fideoInsumo">0</td><td>Masa</td></tr>
-        <tr><td>Jugo de Naranja</td><td><input class="input" id="jugoStock" placeholder="0"></td><td><input class="input" id="jugoMeta" value="800"></td><td id="jugoFaltante">0</td><td id="jugoInsumo">0</td><td>Naranjas</td></tr>
-        <tr><td>Jugo de Piña</td><td><input class="input" id="jugo2Stock" placeholder="0"></td><td><input class="input" id="jugo2Meta" value="800"></td><td id="jugo2Faltante">0</td><td id="jugo2Insumo">0</td><td>Piñas</td></tr>
-        <tr><td>Jugo de Fresa</td><td><input class="input" id="jugo3Stock" placeholder="0"></td><td><input class="input" id="jugo3Meta" value="800"></td><td id="jugo3Faltante">0</td><td id="jugo3Insumo">0</td><td>Fresas</td></tr>
-        <tr><td>Jugo de Manzana</td><td><input class="input" id="jugo4Stock" placeholder="0"></td><td><input class="input" id="jugo4Meta" value="800"></td><td id="jugo4Faltante">0</td><td id="jugo4Insumo">0</td><td>Manzanas</td></tr>
-    </table>
+<body onload="updateUserUI()">
 
-    <div class="container-buttons">
-        <button onclick="calcularTodo()">Calcular</button>
-        <button class="btn-limpiar" onclick="limpiarTodo()">Limpiar</button>
+    <div id="loading-overlay">Cargando datos 🐻🌸💀..</div>
+
+    <h1>Inventario</h1>
+
+    <div class="user-box">
+        USUARIO: 
+        <select id="userSelect" onchange="updateUserUI();">
+            <option value="GIULY" style="background-color: #b4849f; color: white;">GIULY</option>
+            <option value="ALEX" style="background-color: #a7a7df; color: white;">ALEX</option>
+            <option value="NASHIRA" style="background-color: #6e4792; color: white;">NASHIRA</option>
+        </select>
     </div>
 
+    <div class="inventory-card" id="mainCard">
+        <div id="listContainer"></div>
+        <div class="section-title">✨ Cortes Especiales y OTROS</div>
+        <div id="extraContainer"></div>
+    </div>
+
+    <button id="btnSave" class="btn-save-all" onclick="saveAllChanges()">💾 GUARDAR CAMBIOS</button>
+
     <script>
-        const productos = ["solomillo", "jamon", "bolonia", "medallon", "fideo", "jugo", "jugo2", "jugo3", "jugo4"];
+        const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwsO41veRFVbzPLycyBRC17lynjy_DzEwzyusDr2UWQvryFCn7ISwRg6HmIBLvkUqTHsA/exec'; 
+        let inventoryData = [];
+        const userColors = { "GIULY": "#b4849f", "ALEX": "#a7a7df", "NASHIRA": "#6e4792" };
 
-        function calcularTodo() {
-            calcular("solomillo", 0.5);
-            calcular("jamon", 1/10);
-            calcular("bolonia", 10/100);
-            calcular("medallon", 17/100);
-            calcular("fideo", 1/5);
-            calcular("jugo", 50/100);
-            calcular("jugo2", 50/100);
-            calcular("jugo3", 50/100);
-            calcular("jugo4", 50/100);
+        const emojis = {
+            "carne de venado": "🦌", "losa de carne": "🥩", "jamon": "🍖", "bolonias": "🥪",
+            "aguas carbonatadas": "🥤", "naranja": "🍊", "piña": "🍍", "fresa": "🍓", "manzana": "🍎",
+            "medallones de carne": "🍔", "jamón rebanado": "🍖", "lomo de ternera": "🥩", 
+            "solomillo de res": "🥩", "masa": "🍜", "jugo de manzana": "🍎", 
+            "jugo de piña": "🍍", "jugo de fresa": "🍓", "jugo de naranja": "🍊"
+        };
+
+        const extraItems = ["medallones de carne", "jamón rebanado", "lomo de ternera", "solomillo de res", "masa", "jugo de fresa", "jugo de naranja", "jugo de piña", "jugo de manzana"];
+
+        function timeSince(dateString) {
+            // Si es un guion o está vacío, no mostrar tiempo
+            if (!dateString || dateString === "-" || dateString === "" || dateString === "undefined") return "Sin movimientos";
+            
+            try {
+                // Limpiar la fecha (quitar comas o caracteres raros)
+                const parts = String(dateString).match(/\d+/g);
+                if (!parts || parts.length < 3) return "Sin movimientos";
+
+                // p[0]=día, p[1]=mes, p[2]=año, p[3]=hora, p[4]=min
+                const day = parseInt(parts[0]);
+                const month = parseInt(parts[1]) - 1;
+                let year = parseInt(parts[2]);
+                if (year < 100) year += 2000;
+
+                const lastUpdate = new Date(year, month, day, parts[3]||0, parts[4]||0, parts[5]||0);
+                const diffSec = Math.floor((new Date() - lastUpdate) / 1000);
+
+                if (isNaN(diffSec) || diffSec > 10000000) return "Sin movimientos";
+                if (diffSec < 10) return "Recién ahora";
+                if (diffSec < 60) return `Hace ${diffSec} seg`;
+                
+                const diffMin = Math.floor(diffSec / 60);
+                if (diffMin < 60) return `Hace ${diffMin} min`;
+                
+                const diffHrs = Math.floor(diffMin / 60);
+                if (diffHrs < 24) return `Hace ${diffHrs} h`;
+                
+                return `Hace ${Math.floor(diffHrs/24)} d`;
+            } catch (e) { return "Sin movimientos"; }
         }
 
-        function calcular(nombre, factor) {
-            let stock = parseInt(document.getElementById(nombre + "Stock").value) || 0;
-            let meta = parseInt(document.getElementById(nombre + "Meta").value) || 0;
-            let faltante = meta - stock;
-            if (faltante < 0) faltante = 0;
-            let insumo = faltante * factor;
-            let insumoText = (insumo % 1 === 0) ? insumo.toString() : insumo.toFixed(1);
-            document.getElementById(nombre + "Faltante").innerText = faltante;
-            document.getElementById(nombre + "Insumo").innerText = insumoText;
+        function updateUserUI() {
+            const user = document.getElementById('userSelect').value;
+            const color = userColors[user];
+            document.getElementById('userSelect').style.backgroundColor = color;
+            document.getElementById('btnSave').style.backgroundColor = color;
+            renderInventory();
         }
 
-        function limpiarTodo() {
-            productos.forEach(p => {
-                document.getElementById(p + "Stock").value = "0";
-                document.getElementById(p + "Faltante").innerText = "0";
-                document.getElementById(p + "Insumo").innerText = "0";
+        async function loadFromSheet() {
+            try {
+                const response = await fetch(WEB_APP_URL);
+                inventoryData = await response.json();
+                document.getElementById('loading-overlay').style.display = 'none';
+                document.getElementById('mainCard').style.display = 'block';
+                renderInventory();
+            } catch (e) { document.getElementById('loading-overlay').innerText = "⚠️ Error de conexión"; }
+        }
+
+        function renderInventory() {
+            const user = document.getElementById('userSelect').value;
+            const color = userColors[user];
+            const container = document.getElementById('listContainer');
+            const extraContainer = document.getElementById('extraContainer');
+            
+            container.innerHTML = '';
+            extraContainer.innerHTML = '';
+            
+            const colIdx = (user === "GIULY") ? 1 : (user === "ALEX") ? 3 : 5;
+            const dateIdx = colIdx + 1;
+            
+            inventoryData.forEach((row, i) => {
+                const name = row[0] ? row[0].toString().trim() : "";
+                // ELIMINAR NOTAS: Si el nombre tiene "nota", no lo dibujamos
+                if (i < 2 || !name || name.toLowerCase().includes("nota") || name.toLowerCase() === "producto") return;
+                
+                const isExtra = extraItems.includes(name.toLowerCase());
+                const html = `
+                    <div class="row">
+                        <div class="prod-info">
+                            <div class="prod-name">${emojis[name.toLowerCase()] || "📦"} ${name}</div>
+                            <div class="mod-time" style="color:${color}" data-date="${row[dateIdx]}">Modificado: ${timeSince(row[dateIdx])}</div>
+                        </div>
+                        <div class="qty-box" style="background-color:${color}">${row[colIdx] || 0}</div>
+                        <div class="input-group">
+                            <input type="number" class="qty-input" data-prod="${name}" data-col="${colIdx}" placeholder="0">
+                        </div>
+                    </div>`;
+                
+                if (isExtra) extraContainer.innerHTML += html;
+                else container.innerHTML += html;
             });
         }
+
+        // Actualizar los minutos automáticamente cada 10 segundos
+        setInterval(() => {
+            document.querySelectorAll('.mod-time').forEach(el => {
+                const date = el.getAttribute('data-date');
+                el.innerText = "Modificado: " + timeSince(date);
+            });
+        }, 10000);
+
+        async function saveAllChanges() {
+            const inputs = document.querySelectorAll('.qty-input');
+            let updates = [];
+            const userCol = parseInt(inputs[0].getAttribute('data-col'));
+
+            inputs.forEach(input => {
+                let val = parseInt(input.value);
+                if (!isNaN(val) && val !== 0) {
+                    updates.push({ producto: input.getAttribute('data-prod'), cantidad: val, userCol: userCol });
+                }
+            });
+
+            if (updates.length === 0) return alert("No hay cambios.");
+            document.getElementById('loading-overlay').style.display = 'flex';
+            document.getElementById('loading-overlay').innerText = "Guardando...";
+            
+            for (let up of updates) { 
+                await fetch(WEB_APP_URL, { method: 'POST', mode: 'no-cors', body: JSON.stringify(up) }); 
+            }
+            location.reload();
+        }
+
+        loadFromSheet();
     </script>
 </body>
 </html>
