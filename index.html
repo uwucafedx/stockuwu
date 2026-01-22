@@ -48,7 +48,7 @@
             font-size: 16px;
         }
         
-        .container-buttons { text-align: center; margin-top: 15px; }
+        .container-buttons { text-align: center; margin-top: 25px; margin-bottom: 30px; }
 
         button { 
             width: 160px; 
@@ -75,24 +75,6 @@
 
         .btn-limpiar {
             filter: hue-rotate(320deg);
-        }
-        
-        .notas-container {
-            max-width: 900px;
-            margin: 20px auto;
-            text-align: center;
-        }
-        textarea {
-            width: 95%;
-            height: 100px;
-            background: rgba(255, 182, 230, 0.1);
-            border: 1px solid #ffb6e6;
-            border-radius: 10px;
-            color: #ffb6e6;
-            padding: 10px;
-            font-family: 'Pangolin', cursive;
-            resize: none;
-            font-size: 16px;
         }
     </style>
 </head>
@@ -123,11 +105,6 @@
     <div class="container-buttons">
         <button onclick="calcularTodo()">Calcular</button>
         <button class="btn-limpiar" onclick="limpiarTodo()">Limpiar</button>
-    </div>
-
-    <div class="notas-container">
-        <h3>Notas ✏️</h3>
-        <textarea></textarea>
     </div>
 
     <script>
@@ -162,7 +139,6 @@
                 document.getElementById(p + "Faltante").innerText = "0";
                 document.getElementById(p + "Insumo").innerText = "0";
             });
-            document.querySelector('textarea').value = "";
         }
     </script>
 </body>
