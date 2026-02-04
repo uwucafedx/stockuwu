@@ -35,6 +35,12 @@
         td { padding: 6px; text-align: center; } 
         tr:nth-child(even) { background: rgba(255, 182, 230, 0.08); }
         
+        /* Estilo para el espacio de separación */
+        .espacio-separador {
+            height: 30px;
+            background: transparent !important;
+        }
+
         .input { 
             width: 100px; 
             padding: 5px; 
@@ -100,6 +106,9 @@
         <tr><td>Jugo de Piña</td><td><input class="input" id="jugo2Stock" placeholder="0"></td><td><input class="input" id="jugo2Meta" value="900"></td><td id="jugo2Faltante">0</td><td id="jugo2Insumo">0</td><td>Piñas</td></tr>
         <tr><td>Jugo de Fresa</td><td><input class="input" id="jugo3Stock" placeholder="0"></td><td><input class="input" id="jugo3Meta" value="900"></td><td id="jugo3Faltante">0</td><td id="jugo3Insumo">0</td><td>Fresas</td></tr>
         <tr><td>Jugo de Manzana</td><td><input class="input" id="jugo4Stock" placeholder="0"></td><td><input class="input" id="jugo4Meta" value="900"></td><td id="jugo4Faltante">0</td><td id="jugo4Insumo">0</td><td>Manzanas</td></tr>
+        
+        <tr class="espacio-separador"><td colspan="6"></td></tr>
+
         <tr><td>Jugo de Uva</td><td><input class="input" id="uvaStock" placeholder="0"></td><td><input class="input" id="uvaMeta" value="597"></td><td id="uvaFaltante">0</td><td id="uvaInsumo">0</td><td>Uvas</td></tr>
         <tr><td>Pedacitos Tocino</td><td><input class="input" id="tocinoStock" placeholder="0"></td><td><input class="input" id="tocinoMeta" value="597"></td><td id="tocinoFaltante">0</td><td id="tocinoInsumo">0</td><td>Jamón</td></tr>
     </table>
